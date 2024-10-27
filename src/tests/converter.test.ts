@@ -1,4 +1,4 @@
-import { convertCron } from "../index";
+import { convertCron } from "../service/converter.service";
 
 describe("minutes", () => {
   describe("success", () => {
