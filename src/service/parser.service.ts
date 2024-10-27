@@ -1,5 +1,5 @@
 import { convertStringToNumber, unique } from "./utils.service";
-import { error, checkNumber } from "./checker.service";
+import { checkNumber, checkRange } from "./checker.service";
 
 type Type = "minutes" | "hours" | "days" | "months" | "daysOfWeek";
 
@@ -83,10 +83,7 @@ function parseStepValue(stepValue: string, min: number, max: number): number[] {
 
     checkNumber(rangeLeftNumber, min, max);
     checkNumber(rangeRightNumber, min, max);
-
-    if (rangeLeftNumber > rangeRightNumber) {
-      throw error;
-    }
+    checkRange(rangeLeftNumber, rangeRightNumber);
 
     for (let i = rangeLeftNumber; i <= rangeRightNumber; i += rightNumber) {
       result.push(i);
@@ -113,10 +110,7 @@ function parseRange(range: string, min: number, max: number): number[] {
 
   checkNumber(rangeLeftNumber, min, max);
   checkNumber(rangeRightNumber, min, max);
-
-  if (rangeLeftNumber > rangeRightNumber) {
-    throw error;
-  }
+  checkRange(rangeLeftNumber, rangeRightNumber);
 
   for (let i = rangeLeftNumber; i <= rangeRightNumber; i++) {
     result.push(i);
