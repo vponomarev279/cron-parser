@@ -5,9 +5,11 @@ A command-line application that parses and expands standard cron expressions to 
 ## Getting Started
 
 ### Prerequisites
-Make sure you have Node.js installed on your machine. You can download it [here](https://nodejs.org/en/download/prebuilt-binaries).
+
+Make sure you have Node.js version 18 or higher installed on your machine. You can download it [here](https://nodejs.org/en/download/prebuilt-binaries).
 
 ### Installation
+
 Install the dependencies:
 
 ```sh
