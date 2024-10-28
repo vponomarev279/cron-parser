@@ -797,7 +797,7 @@ describe("month", () => {
     });
 
     test("invalid symbol", () => {
-      const input = "5 1 1 \ 0 /usr/bin/find";
+      const input = "5 1 1  0 /usr/bin/find";
 
       expect(() => convertCron(input)).toThrow("Invalid format");
     });
@@ -993,5 +993,53 @@ describe("day of week", () => {
 
       expect(() => convertCron(input)).toThrow("Invalid format");
     });
+  });
+});
+
+describe("common", () => {
+  it("success on tabulation", () => {
+    const input = "0\t10\t1 5 0 /usr/bin/find";
+    const output = [
+      "minute        0",
+      "hour          10",
+      "day of month  1",
+      "month         5",
+      "day of week   0",
+      "command       /usr/bin/find",
+    ];
+
+    expect(convertCron(input)).toEqual(output.join("\n"));
+  });
+
+  it("success on a few spaces", () => {
+    const input = "0   10  1    5 0 /usr/bin/find";
+    const output = [
+      "minute        0",
+      "hour          10",
+      "day of month  1",
+      "month         5",
+      "day of week   0",
+      "command       /usr/bin/find",
+    ];
+
+    expect(convertCron(input)).toEqual(output.join("\n"));
+  });
+
+  it("error if there are not enough parameters", () => {
+    const input = "0 10 1 /usr/bin/find";
+
+    expect(() => convertCron(input)).toThrow("Invalid format");
+  });
+
+  it("error if passed empty string", () => {
+    const input = "";
+
+    expect(() => convertCron(input)).toThrow("Invalid format");
+  });
+
+  it("error if the command is not passed", () => {
+    const input = "0 10 1 5 0";
+
+    expect(() => convertCron(input)).toThrow("Invalid format");
   });
 });

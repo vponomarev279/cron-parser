@@ -9,6 +9,12 @@ export function checkRange(left: number, right: number) {
   }
 }
 
+export function checkCommand(command?: string) {
+  if (!command || command === "") {
+    throw error;
+  }
+}
+
 // private
 
 const error = new Error("Invalid format");

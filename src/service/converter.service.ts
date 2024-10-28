@@ -1,7 +1,11 @@
+import { checkCommand } from "./checker.service";
 import { parse } from "./parser.service";
 
 export function convertCron(input: string) {
-  const [minutes, hours, days, months, daysOfWeek, command] = input.split(" ");
+  const [minutes, hours, days, months, daysOfWeek, command] =
+    input.split(/\s+/);
+
+  checkCommand(command);
 
   return [
     "minute".padEnd(14, " ") + parse(minutes, "minutes"),
