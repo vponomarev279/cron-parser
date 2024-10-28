@@ -5,9 +5,5 @@
     "rootDir": "./",
     "moduleResolution": "node",
     "skipLibCheck": true
-  },
-  "ts-node": {
-    "esm": true,
-    "experimentalSpecifierResolution": "node"
   }
 }
